@@ -1,8 +1,14 @@
-package com.solvd.models;
+package com.solvd.models.game;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.solvd.App;
 import com.solvd.exceptions.InvalidGameException;
+import com.solvd.models.team.FootballTeam;
 
 public abstract class AbstractGame {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     private FootballTeam teamA;
     private FootballTeam teamB;
 

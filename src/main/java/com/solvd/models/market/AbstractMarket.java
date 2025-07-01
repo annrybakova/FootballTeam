@@ -1,4 +1,4 @@
-package com.solvd.models;
+package com.solvd.models.market;
 
 import java.util.ArrayList;
 

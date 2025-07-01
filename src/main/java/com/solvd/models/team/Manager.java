@@ -1,8 +1,9 @@
-package com.solvd.models;
+package com.solvd.models.team;
 
 import com.solvd.exceptions.InsufficientFundsException;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
+import com.solvd.models.utils.Person;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

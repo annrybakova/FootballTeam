@@ -1,4 +1,4 @@
-package com.solvd.models;
+package com.solvd.models.game;
 
 import java.util.ArrayList;
 

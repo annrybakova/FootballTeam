@@ -1,12 +1,17 @@
-package com.solvd.models;
+package com.solvd.models.team;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.solvd.App;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
 
 public class FootballTeam implements Trainable, Trackable {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     private String name;
     private Manager manager;
     private ArrayList<FootballPlayer> team = new ArrayList<FootballPlayer>();
@@ -32,18 +37,18 @@ public class FootballTeam implements Trainable, Trackable {
     @Override
     public void train(double score) {
         this.teamSkillBonus += score;
-        System.out.println(name + " won and increased team skill by " + score);
+        logger.info(name + " won and increased team skill by " + score);
     }
 
     public void updatePlayersSkill(int score) {
-        System.out.println("Skills of all members of team " + name + " are increased by " + team.size() / score);
+        logger.info("Skills of all members of team " + name + " are increased by " + team.size() / score);
         for (FootballPlayer member : team) {
             member.updatePlayerSkill(team.size() / score);
         }
     }
 
     public void updateManagerMoney(int score) {
-        System.out.println("Manager of team " + name + " earned $" + team.size() / score);
+        logger.info("Manager of team " + name + " earned $" + team.size() / score);
         manager.earnMoney(team.size() / score);
     }
 
@@ -84,12 +89,12 @@ public class FootballTeam implements Trainable, Trackable {
 
     @Override
     public void displayStats() {
-        System.out.println("Team: " + name);
-        System.out.println("Manager: " + manager.getName());
-        System.out.println("Total Skill Level: " + getTeamSkill());
-        System.out.println("Players:");
+        logger.info("Team: " + name);
+        logger.info("Manager: " + manager.getName());
+        logger.info("Total Skill Level: " + getTeamSkill());
+        logger.info("Players:");
         for (FootballPlayer player : team) {
-            System.out.println("  " + player.getPlayerName() + " (Skill: " + player.getPlayerSkill() + ")");
+            logger.info("  " + player.getPlayerName() + " (Skill: " + player.getPlayerSkill() + ")");
         }
     }
 }

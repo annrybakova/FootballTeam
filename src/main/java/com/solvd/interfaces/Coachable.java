@@ -1,7 +1,7 @@
 package com.solvd.interfaces;
 
-import com.solvd.models.FootballPlayer;
-import com.solvd.models.FootballTeam;
+import com.solvd.models.team.FootballPlayer;
+import com.solvd.models.team.FootballTeam;
 
 public interface Coachable {
     void coachTeam(FootballTeam team);

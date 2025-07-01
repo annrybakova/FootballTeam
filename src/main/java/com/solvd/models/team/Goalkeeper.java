@@ -1,4 +1,4 @@
-package com.solvd.models;
+package com.solvd.models.team;
 
 import java.util.ArrayList;
 import java.util.List;

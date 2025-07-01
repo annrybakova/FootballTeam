@@ -1,8 +1,16 @@
-package com.solvd.models;
+package com.solvd.models.referees;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.solvd.App;
 import com.solvd.interfaces.Trainable;
+import com.solvd.models.game.Game;
+import com.solvd.models.utils.Person;
 
 abstract class Referee extends Person implements Trainable {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
+
     protected int experience;
 
     public Referee(String name, int experience) {
@@ -27,18 +35,18 @@ abstract class Referee extends Person implements Trainable {
     @Override
     public void train() {
         this.experience++;
-        System.out.println(name + " gained experience and increased it by 1");
+        logger.info(name + " gained experience and increased it by 1");
     }
 
     @Override
     public void train(double skillIncrease) {
         this.experience += skillIncrease;
-        System.out.println(name + " gained experience and increased it by " + skillIncrease);
+        logger.info(name + " gained experience and increased it by " + skillIncrease);
     }
 
     @Override
     public void introduceYourself() {
-        System.out.println("Hi! I'm " + name + "and I'm a referee");
+        logger.info("Hi! I'm " + name + "and I'm a referee");
     }
 
 }

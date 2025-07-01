@@ -1,10 +1,16 @@
-package com.solvd.models;
+package com.solvd.models.team;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.solvd.App;
 import com.solvd.interfaces.Marketable;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
+import com.solvd.models.utils.Person;
 
 public abstract class FootballPlayer extends Person implements Trainable, Marketable, Trackable {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     protected double skill;
     protected int price;
 
@@ -17,7 +23,7 @@ public abstract class FootballPlayer extends Person implements Trainable, Market
     public abstract void beEnrolled(FootballTeam team);
 
     public double getPlayerSkill() {
-        System.out.println("Football Player " + name + " has skill of " + skill);
+        logger.info("Football Player " + name + " has skill of " + skill);
         return skill;
     }
 
@@ -27,7 +33,7 @@ public abstract class FootballPlayer extends Person implements Trainable, Market
 
     public void updatePlayerSkill(double bonus) {
         this.skill += bonus;
-        System.out.println("Football Player " + name + " increased skill by " + bonus);
+        logger.info("Football Player " + name + " increased skill by " + bonus);
     }
 
     public String getPlayerName() {
@@ -50,19 +56,19 @@ public abstract class FootballPlayer extends Person implements Trainable, Market
 
     @Override
     public void introduceYourself() {
-        System.out.println("Hi! I'm " + name + "and I'm a football player");
+        logger.info("Hi! I'm " + name + "and I'm a football player");
     }
 
     @Override
     public void train(double skillIncrease) {
         this.skill += skillIncrease;
-        System.out.println(name + " trained and increased skill by " + skillIncrease);
+        logger.info(name + " trained and increased skill by " + skillIncrease);
     }
 
     @Override
     public void displayStats() {
-        System.out.println("Player Name: " + name);
-        System.out.println("Skill Level: " + skill);
-        System.out.println("Price: $" + price);
+        logger.info("Player Name: " + name);
+        logger.info("Skill Level: " + skill);
+        logger.info("Price: $" + price);
     }
 }

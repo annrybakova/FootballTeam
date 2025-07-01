@@ -1,10 +1,19 @@
-package com.solvd.models;
+package com.solvd.models.game;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.solvd.App;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.exceptions.InvalidGameException;
 import com.solvd.exceptions.SameReferees;
+import com.solvd.models.referees.FieldJudge;
+import com.solvd.models.referees.LineJudge;
+import com.solvd.models.team.FootballTeam;
+import com.solvd.models.utils.Random;
 
 public class Game extends AbstractGame {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     private FieldJudge fieldJudge;
     private LineJudge lineJudge;
 
@@ -29,7 +38,7 @@ public class Game extends AbstractGame {
             throw new InvalidGameException("Game can't be pkayed: " + e.getMessage());
         }
         int result = Random.randomInt(0, 2);
-        System.out.println("Result of the game: ");
+        logger.info("Result of the game: ");
         switch (result) {
             case 1:
                 getTeamA().train(1);

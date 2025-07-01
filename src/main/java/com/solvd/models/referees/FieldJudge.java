@@ -1,6 +1,13 @@
-package com.solvd.models;
+package com.solvd.models.referees;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.solvd.App;
+import com.solvd.models.game.Game;
 
 public class FieldJudge extends Referee {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
 
     public FieldJudge(int experience, String name) {
         super(name, experience);
@@ -9,7 +16,7 @@ public class FieldJudge extends Referee {
     @Override
     public void officiateGame(Game game) {
         train();
-        System.out.println("Field Referee " + getName() + " is officiating the game " + game.gameBetween());
+        logger.info("Field Referee " + getName() + " is officiating the game " + game.gameBetween());
     }
 
     @Override

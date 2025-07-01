@@ -1,4 +1,4 @@
-package com.solvd.models;
+package com.solvd.models.team;
 
 import com.solvd.App;
 import com.solvd.interfaces.Coachable;

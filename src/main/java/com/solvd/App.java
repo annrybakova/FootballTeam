@@ -9,20 +9,20 @@ import com.solvd.exceptions.InvalidGameException;
 import com.solvd.exceptions.SameReferees;
 
 import com.solvd.interfaces.Trackable;
-import com.solvd.models.Competititon;
-import com.solvd.models.Defender;
-import com.solvd.models.FieldJudge;
-import com.solvd.models.FootballPlayer;
-import com.solvd.models.FootballTeam;
-import com.solvd.models.Forward;
-import com.solvd.models.Game;
-import com.solvd.models.Goalkeeper;
-import com.solvd.models.LineJudge;
-import com.solvd.models.Manager;
-import com.solvd.models.PlayersMarket;
-import com.solvd.models.Result;
-import com.solvd.models.Statistics;
-import com.solvd.models.Trainer;
+import com.solvd.models.game.Competititon;
+import com.solvd.models.game.Game;
+import com.solvd.models.game.Result;
+import com.solvd.models.market.PlayersMarket;
+import com.solvd.models.referees.FieldJudge;
+import com.solvd.models.referees.LineJudge;
+import com.solvd.models.team.Defender;
+import com.solvd.models.team.FootballPlayer;
+import com.solvd.models.team.FootballTeam;
+import com.solvd.models.team.Forward;
+import com.solvd.models.team.Goalkeeper;
+import com.solvd.models.team.Manager;
+import com.solvd.models.team.Trainer;
+import com.solvd.models.utils.Statistics;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,7 +107,7 @@ public class App {
             }
         }
 
-        System.out.println("------------Final Statistics------------");
+        logger.info("------------Final Statistics------------");
 
         ArrayList<Trackable> trackableEntities = new ArrayList<>();
         trackableEntities.add(team1);
@@ -123,7 +123,7 @@ public class App {
 
         for (Trackable entity : trackableEntities) {
             entity.displayStats();
-            System.out.println("------------");
+            logger.info("------------");
         }
     }
 

@@ -1,9 +1,10 @@
-package com.solvd.models;
+package com.solvd.models.referees;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.solvd.App;
+import com.solvd.models.game.Game;
 
 public class LineJudge extends Referee {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
@@ -15,7 +16,7 @@ public class LineJudge extends Referee {
     @Override
     public void officiateGame(Game game) {
         train();
-        System.out.println(
+        logger.info(
                 "Line Referee " + getName() + " is overseeing the sidelines for the game " + game.gameBetween());
     }
 

@@ -1,6 +1,7 @@
-package com.solvd.models;
+package com.solvd.models.market;
 
 import com.solvd.exceptions.DuplicatePlayerRoleException;
+import com.solvd.models.team.FootballPlayer;
 
 public class PlayersMarket extends AbstractMarket<FootballPlayer> {
 

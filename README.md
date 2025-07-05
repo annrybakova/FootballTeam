@@ -1,18 +1,93 @@
-## Getting Started
+# Football Team
+A Java project demonstrating object-oriented programming concepts with a focus on football team operations, collections, and generics.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Project Structure
+src/main/java/com/solvd/
+├── collections/        # Custom collection implementations
+├── exceptions/         # Custom exceptions
+├── interfaces/         # Interface definitions
+├── models/             # Domain models
+│   └── game/           # game-related models
+│   └── market/         # market-related models
+│   └── referees/       # referee-related models
+│   └── team/           # referee-related models
+│   └── utils/          # utility classes
+└── App.java            # Application entry point
+## Features
+- Football game management
+- Team composition and management
+- Skills tracking
+- Funds calculations
+- Various football players and referee types support
+- Comprehensive exception handling
+- Generic classes for type safety
+- Custom LinkedList implementation
+- Multiple collection types (List, Set, Map, Queue)
+- Proper encapsulation with getters and setters
 
-## Folder Structure
+## Collections and Generics
+The project demonstrates the use of various collection types and generic classes:
 
-The workspace contains two folders by default, where:
+CustomLinkedList<T> - A custom implementation of a linked list with basic operations
+Contains a private inner Node<T> class with encapsulated data
+Provides methods like add, get, remove, size, and isEmpty
+Full encapsulation with proper getters and setters
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Competititon<T extends Game> - Generic game management using collection Queue for scheduling games
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+AbstractMarket<T> - Generic market maintainance using collection
+HashSet for market (only unique players can appear in market)
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+FootballTeam <T extends FootballPlayer> - Generic football team management using collection ArrayList<T> to store football team members
 
-## Dependency Management
+RewardTracker - Class for tracking rewards using collection Map<FootballPlayer, List<String>> to store each football player's rewards
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+SkillsRating - Class for ranging football teams using collection TreeMap<FootballTeam, Integer> to rate each football team based on its skill score
+---
+
+HashMap for material catalog
+
+LinkedList for order queue
+ArrayList for stock items
+ProjectSchedule<T extends Project> - Generic project scheduling using TreeMap
+Manages projects with date-based scheduling
+Provides methods to add, retrieve, and reschedule projects
+ConstructionTeam<T extends AbstractConstructionTeamMember> - Generic team management
+Organizes team members by position and specialization
+----
+# Custom Exceptions
+
+The project includes several custom exceptions:
+
+- DuplicatePlayerRoleException - Thrown when the same football player with a different role is being added to a market
+- IncompleteTeamException - Thrown when a team does not have all the necessary players
+- InsufficientFundsException - Thrown when a manager doesn't have enough fund to buy a player
+- InvalidGameException - Thrown when a game cannot be scheduled due to the lack of players in one of the teams
+- SameReferees - Thrown when the same referee ia assigned to defferent roles
+
+# Encapsulation
+All classes follow proper encapsulation principles:
+
+Private fields with public getters and setters
+Inner classes (like Node in CustomLinkedList) properly encapsulated
+Immutable data where appropriate
+Logger instances are private and static final
+
+## Build and Run
+```bash
+The project uses **Maven** for dependency management and building.
+
+# Compile the project
+mvn compile
+
+# Run the application
+mvn exec:java
+
+# Package the application
+mvn package
+```
+
+
+## Requirements
+Java 21
+Maven 3.8+

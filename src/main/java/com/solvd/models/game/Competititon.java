@@ -1,6 +1,7 @@
 package com.solvd.models.game;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,18 +9,18 @@ import org.slf4j.LoggerFactory;
 import com.solvd.App;
 import com.solvd.exceptions.InvalidGameException;
 
-public class Competititon {
+public class Competititon <T extends Game> {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
-    private final ArrayList<Game> matches = new ArrayList<Game>();
+    private final Queue<T> matches = new LinkedList<T>();
 
-    public void addMatch(Game match) {
-        matches.add(match);
+    public void addMatch(T match) {
+        matches.offer(match);
     }
 
     public void playAllMatches() {
-        for (Game match : matches) {
+        while(!matches.isEmpty()) {
             try {
-                Result result = match.play();
+                Result result = matches.poll().play();
                 result.display();
             } catch (InvalidGameException e) {
                 logger.error(

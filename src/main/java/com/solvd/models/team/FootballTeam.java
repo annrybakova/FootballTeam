@@ -10,11 +10,11 @@ import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
 
-public class FootballTeam implements Trainable, Trackable {
+public class FootballTeam<T extends FootballPlayer> implements Trainable, Trackable, Comparable<FootballTeam> {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
     private String name;
     private Manager manager;
-    private ArrayList<FootballPlayer> team = new ArrayList<FootballPlayer>();
+    private ArrayList<T> team = new ArrayList<T>();
     private int teamSkillBonus = 0;
 
     public FootballTeam(String name, Manager manager) {
@@ -22,13 +22,13 @@ public class FootballTeam implements Trainable, Trackable {
         this.manager = manager;
     }
 
-    public void addFootballPlayer(FootballPlayer player) {
+    public void addFootballPlayer(T player) {
         team.add(player);
     }
 
     public int getTeamSkill() {
         int teamSkill = 0;
-        for (FootballPlayer player : team) {
+        for (T player : team) {
             teamSkill += player.getPlayerSkill();
         }
         return teamSkill + teamSkillBonus;
@@ -42,7 +42,7 @@ public class FootballTeam implements Trainable, Trackable {
 
     public void updatePlayersSkill(int score) {
         logger.info("Skills of all members of team " + name + " are increased by " + team.size() / score);
-        for (FootballPlayer member : team) {
+        for (T member : team) {
             member.updatePlayerSkill(team.size() / score);
         }
     }
@@ -56,7 +56,7 @@ public class FootballTeam implements Trainable, Trackable {
         return name;
     }
 
-    public ArrayList<FootballPlayer> getTeamMembers() {
+    public ArrayList<T> getTeamMembers() {
         return team;
     }
 
@@ -64,7 +64,7 @@ public class FootballTeam implements Trainable, Trackable {
         this.name = name;
     }
 
-    public void setTeamMembers(ArrayList<FootballPlayer> team) {
+    public void setTeamMembers(ArrayList<T> team) {
         this.team = team;
     }
 
@@ -72,7 +72,7 @@ public class FootballTeam implements Trainable, Trackable {
         boolean hasGoalkeeper = false;
         boolean hasDefender = false;
         boolean hasForward = false;
-        for (FootballPlayer player : team) {
+        for (T player : team) {
             if (player instanceof Goalkeeper) {
                 hasGoalkeeper = true;
             } else if (player instanceof Defender) {
@@ -93,8 +93,13 @@ public class FootballTeam implements Trainable, Trackable {
         logger.info("Manager: " + manager.getName());
         logger.info("Total Skill Level: " + getTeamSkill());
         logger.info("Players:");
-        for (FootballPlayer player : team) {
+        for (T player : team) {
             logger.info("  " + player.getPlayerName() + " (Skill: " + player.getPlayerSkill() + ")");
         }
+    }
+
+    @Override
+    public int compareTo(FootballTeam other) {
+        return this.name.compareTo(other.name);
     }
 }

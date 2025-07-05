@@ -23,7 +23,7 @@ public abstract class FootballPlayer extends Person implements Trainable, Market
     public abstract void beEnrolled(FootballTeam team);
 
     public double getPlayerSkill() {
-        logger.info("Football Player " + name + " has skill of " + skill);
+        // logger.info("Football Player " + name + " has skill of " + skill);
         return skill;
     }
 

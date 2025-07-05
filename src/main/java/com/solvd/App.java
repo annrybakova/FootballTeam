@@ -21,7 +21,9 @@ import com.solvd.models.team.FootballTeam;
 import com.solvd.models.team.Forward;
 import com.solvd.models.team.Goalkeeper;
 import com.solvd.models.team.Manager;
+import com.solvd.models.team.RewardTracker;
 import com.solvd.models.team.Trainer;
+import com.solvd.models.utils.SkillsRating;
 import com.solvd.models.utils.Statistics;
 
 import org.slf4j.Logger;
@@ -37,8 +39,8 @@ public class App {
 
         Trainer trainer = new Trainer("Coach Potato", 15);
 
-        FootballTeam team1 = new FootballTeam("Vegetables", manager1);
-        FootballTeam team2 = new FootballTeam("Fruit", manager2);
+        FootballTeam<FootballPlayer> team1 = new FootballTeam("Vegetables", manager1);
+        FootballTeam<FootballPlayer> team2 = new FootballTeam("Fruit", manager2);
 
         PlayersMarket market = new PlayersMarket();
         try {
@@ -97,17 +99,19 @@ public class App {
             logger.error(e.getMessage());
         }
 
-        Competititon competition = new Competititon();
+        Competititon<Game> competition = new Competititon();
         competition.addMatch(game);
 
         competition.playAllMatches();
+        RewardTracker rewardTracker = new RewardTracker();
         for (FootballPlayer player : team1.getTeamMembers()) {
             if (player instanceof Goalkeeper) {
-                ((Goalkeeper) player).giveReward("Best Vegetable of the Match");
+                rewardTracker.giveReward(player, "Best Vegetable of the Match");
             }
         }
+        rewardTracker.displayRewards();
 
-        logger.info("------------Final Statistics------------");
+        logger.info("------------Statistics------------");
 
         ArrayList<Trackable> trackableEntities = new ArrayList<>();
         trackableEntities.add(team1);
@@ -125,6 +129,12 @@ public class App {
             entity.displayStats();
             logger.info("------------");
         }
+
+        logger.info("------------Rating------------");
+        SkillsRating rating = new SkillsRating();
+        rating.addTeamToRating(team1);
+        rating.addTeamToRating(team2);
+        rating.showRating();
     }
 
 }

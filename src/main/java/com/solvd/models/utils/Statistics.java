@@ -10,7 +10,7 @@ import com.solvd.models.team.FootballTeam;
 public class Statistics {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-    public static void displayTeamStats(FootballTeam team) {
+    public static <T extends FootballPlayer> void displayTeamStats(FootballTeam <T> team) {
         logger.info("Team: " + team.getFootballTeamName());
         logger.info("Skill Level: " + team.getTeamSkill());
         logger.info("Players: ");

@@ -2,6 +2,7 @@
 A Java project demonstrating object-oriented programming concepts with a focus on football team operations, collections, and generics.
 
 ## Project Structure
+```
 src/main/java/com/solvd/
 ├── collections/        # Custom collection implementations
 ├── exceptions/         # Custom exceptions
@@ -13,6 +14,7 @@ src/main/java/com/solvd/
 │   └── team/           # referee-related models
 │   └── utils/          # utility classes
 └── App.java            # Application entry point
+```
 ## Features
 - Football game management
 - Team composition and management
@@ -28,34 +30,23 @@ src/main/java/com/solvd/
 ## Collections and Generics
 The project demonstrates the use of various collection types and generic classes:
 
-CustomLinkedList<T> - A custom implementation of a linked list with basic operations
+- CustomLinkedList<T> - A custom implementation of a linked list with basic operations
 Contains a private inner Node<T> class with encapsulated data
 Provides methods like add, get, remove, size, and isEmpty
 Full encapsulation with proper getters and setters
 
-Competititon<T extends Game> - Generic game management using collection Queue for scheduling games
+- Competititon<T extends Game> - Generic game management using collection Queue for scheduling games
 
-AbstractMarket<T> - Generic market maintainance using collection
+- AbstractMarket<T> - Generic market maintainance using collection
 HashSet for market (only unique players can appear in market)
 
-FootballTeam <T extends FootballPlayer> - Generic football team management using collection ArrayList<T> to store football team members
+- FootballTeam <T extends FootballPlayer> - Generic football team management using collection ArrayList<T> to store football team members
 
-RewardTracker - Class for tracking rewards using collection Map<FootballPlayer, List<String>> to store each football player's rewards
+- RewardTracker - Class for tracking rewards using collection Map<FootballPlayer, List<String>> to store each football player's rewards
 
-SkillsRating - Class for ranging football teams using collection TreeMap<FootballTeam, Integer> to rate each football team based on its skill score
----
+- SkillsRating - Class for ranging football teams using collection TreeMap<FootballTeam, Integer> to rate each football team based on its skill score
 
-HashMap for material catalog
-
-LinkedList for order queue
-ArrayList for stock items
-ProjectSchedule<T extends Project> - Generic project scheduling using TreeMap
-Manages projects with date-based scheduling
-Provides methods to add, retrieve, and reschedule projects
-ConstructionTeam<T extends AbstractConstructionTeamMember> - Generic team management
-Organizes team members by position and specialization
-----
-# Custom Exceptions
+## Custom Exceptions
 
 The project includes several custom exceptions:
 
@@ -65,7 +56,7 @@ The project includes several custom exceptions:
 - InvalidGameException - Thrown when a game cannot be scheduled due to the lack of players in one of the teams
 - SameReferees - Thrown when the same referee ia assigned to defferent roles
 
-# Encapsulation
+## Encapsulation
 All classes follow proper encapsulation principles:
 
 Private fields with public getters and setters
@@ -75,7 +66,7 @@ Logger instances are private and static final
 
 ## Build and Run
 ```bash
-The project uses **Maven** for dependency management and building.
+# The project uses *Maven* for dependency management and building.
 
 # Compile the project
 mvn compile
@@ -89,5 +80,7 @@ mvn package
 
 
 ## Requirements
+```
 Java 21
 Maven 3.8+
+```

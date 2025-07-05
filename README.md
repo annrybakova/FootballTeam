@@ -24,7 +24,7 @@ src/main/java/com/solvd/
 - Comprehensive exception handling
 - Generic classes for type safety
 - Custom LinkedList implementation
-- Multiple collection types (List, Set, Map, Queue)
+- Multiple collection types (List, Set, Map, Queue, Tree)
 - Proper encapsulation with getters and setters
 
 ## Collections and Generics
@@ -59,10 +59,9 @@ The project includes several custom exceptions:
 ## Encapsulation
 All classes follow proper encapsulation principles:
 
-Private fields with public getters and setters
-Inner classes (like Node in CustomLinkedList) properly encapsulated
-Immutable data where appropriate
-Logger instances are private and static final
+- Private fields with public getters and setters
+- Inner classes (like Node in LinkedList) properly encapsulated
+- Logger instances are private and static final
 
 ## Build and Run
 ```bash

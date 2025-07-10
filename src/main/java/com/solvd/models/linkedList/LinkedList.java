@@ -51,6 +51,26 @@ public class LinkedList {
             }
         }
 
+        public T get(int index) {
+            if (index < 0) {
+                logger.info("Invalid index");
+                return null;
+            }
+
+            Node<T> current = head;
+            int currentIndex = 0;
+            while (current != null) {
+                if (currentIndex == index) {
+                    logger.info(current.data.toString());
+                    return current.data;
+                }
+                current = current.next;
+                currentIndex++;
+            }
+            logger.info("No element");
+            return null;
+        }
+
         public void print() {
             Node<T> current = head;
             StringBuilder linkedListPrint = new StringBuilder();

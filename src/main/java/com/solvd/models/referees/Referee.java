@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.solvd.App;
 import com.solvd.interfaces.Trainable;
+import com.solvd.models.enums.RefereePosition;
 import com.solvd.models.game.Game;
 import com.solvd.models.utils.Person;
 
@@ -12,6 +13,7 @@ abstract class Referee extends Person implements Trainable {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
 
     protected int experience;
+    private RefereePosition position;
 
     public Referee(String name, int experience) {
         super(name);
@@ -47,6 +49,15 @@ abstract class Referee extends Person implements Trainable {
     @Override
     public void introduceYourself() {
         logger.info("Hi! I'm " + name + "and I'm a referee");
+    }
+
+
+    public RefereePosition getPosition() {
+        return position;
+    }
+
+    public void setPosition(RefereePosition position) {
+        this.position = position;
     }
 
 }

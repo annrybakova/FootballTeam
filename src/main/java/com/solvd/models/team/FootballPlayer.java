@@ -7,12 +7,15 @@ import com.solvd.App;
 import com.solvd.interfaces.Marketable;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
+import com.solvd.models.enums.PlayerPosition;
+import com.solvd.models.enums.RefereePosition;
 import com.solvd.models.utils.Person;
 
 public abstract class FootballPlayer extends Person implements Trainable, Marketable, Trackable {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
     protected double skill;
     protected int price;
+    private PlayerPosition position;
 
     public FootballPlayer(String name, double skill, int price) {
         super(name);
@@ -42,6 +45,14 @@ public abstract class FootballPlayer extends Person implements Trainable, Market
 
     public void setPlayerName(String name) {
         this.name = name;
+    }
+
+    public PlayerPosition getPosition() {
+        return position;
+    }
+
+    public void setPosition(PlayerPosition position) {
+        this.position = position;
     }
 
     @Override

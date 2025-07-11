@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.solvd.App;
+import com.solvd.models.enums.RefereePosition;
 import com.solvd.models.game.Game;
 
 public class LineJudge extends Referee {
@@ -11,17 +12,18 @@ public class LineJudge extends Referee {
 
     public LineJudge(int experience, String name) {
         super(name, experience);
+        setPosition(RefereePosition.LINE_JUDGE);
     }
 
     @Override
     public void officiateGame(Game game) {
         train();
         logger.info(
-                "Line Referee " + getName() + " is overseeing the sidelines for the game " + game.gameBetween());
+                getPosition() + getName() + " is overseeing the sidelines for the game " + game.gameBetween());
     }
 
     @Override
     public String toString() {
-        return "Line Referee{name='" + name + "', experience=" + experience + "}";
+        return getPosition() + "{name='" + name + "', experience=" + experience + "}";
     }
 }

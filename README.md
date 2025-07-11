@@ -32,7 +32,7 @@ The project demonstrates the use of various collection types and generic classes
 
 - CustomLinkedList<T> - A custom implementation of a linked list with basic operations
 Contains a private inner Node<T> class with encapsulated data
-Provides methods like add, get, remove, size, and isEmpty
+Provides methods like add, get, remove, and print
 Full encapsulation with proper getters and setters
 
 - Competititon<T extends Game> - Generic game management using collection Queue for scheduling games

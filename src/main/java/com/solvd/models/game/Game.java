@@ -7,6 +7,7 @@ import com.solvd.App;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.exceptions.InvalidGameException;
 import com.solvd.exceptions.SameReferees;
+import com.solvd.models.enums.MatchResultType;
 import com.solvd.models.referees.FieldJudge;
 import com.solvd.models.referees.LineJudge;
 import com.solvd.models.team.FootballTeam;
@@ -35,7 +36,7 @@ public class Game extends AbstractGame {
             getTeamA().validateTeam();
             getTeamB().validateTeam();
         } catch (IncompleteTeamException e) {
-            throw new InvalidGameException("Game can't be pkayed: " + e.getMessage());
+            throw new InvalidGameException("Game can't be played: " + e.getMessage());
         }
         int result = Random.randomInt(0, 2);
         logger.info("Result of the game: ");
@@ -44,14 +45,17 @@ public class Game extends AbstractGame {
                 getTeamA().train(1);
                 getTeamA().updatePlayersSkill(1);
                 getTeamA().updateManagerMoney(1);
-                return new Result(getTeamA(), getTeamB(), getTeamA().getFootballTeamName() + " wins");
+                setResult(MatchResultType.WIN_TEAM_A);
+                return new Result(getTeamA(), getTeamB(), getTeamA().getFootballTeamName() + " " + getResult());
             case 2:
                 getTeamB().train(1);
                 getTeamB().updatePlayersSkill(1);
                 getTeamB().updateManagerMoney(1);
-                return new Result(getTeamA(), getTeamB(), getTeamB().getFootballTeamName() + " wins");
+                setResult(MatchResultType.WIN_TEAM_B);
+                return new Result(getTeamA(), getTeamB(), getTeamB().getFootballTeamName() + " " + getResult());
             default:
-                return new Result(getTeamA(), getTeamB(), " Draw");
+                setResult(MatchResultType.DRAW);
+                return new Result(getTeamA(), getTeamB(), " " + getResult());
         }
     }
 }

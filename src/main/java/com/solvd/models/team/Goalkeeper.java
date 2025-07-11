@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.interfaces.Rewardable;
+import com.solvd.models.enums.PlayerPosition;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Goalkeeper extends FootballPlayer implements Rewardable {
     private static final Logger logger = LoggerFactory.getLogger(Goalkeeper.class);
-    private static final String type = "Goalkeeper";
     private List<String> rewards = new ArrayList<>();
 
     public Goalkeeper(String name, int skill, int price) {
         super(name, skill, price);
+        setPosition(PlayerPosition.GOALKEEPER);
     }
 
     @Override
     public void beEnrolled(FootballTeam team) {
-        logger.info(type + getPlayerName() + " joined team " + team.getFootballTeamName());
+        logger.info(getPosition() + " " + getPlayerName() + " joined team " + team.getFootballTeamName());
     }
 
     @Override

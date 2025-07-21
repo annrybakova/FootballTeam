@@ -16,7 +16,7 @@ public class CountWords {
     private static final Logger logger = LogManager.getLogger(CountWords.class);
 
     public static void main(String[] args) {
-        File outputFile = new File("output-counts.txt");
+        File outputFile = new File("src/main/resources/com/solvd/models/countWords/output-counts.txt");
 
         try (InputStream inputStream = CountWords.class
                 .getClassLoader()

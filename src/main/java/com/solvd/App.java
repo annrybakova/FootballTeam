@@ -1,6 +1,8 @@
 package com.solvd;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.solvd.exceptions.DuplicatePlayerRoleException;
 import com.solvd.exceptions.IncompleteTeamException;
@@ -9,6 +11,8 @@ import com.solvd.exceptions.InvalidGameException;
 import com.solvd.exceptions.SameReferees;
 
 import com.solvd.interfaces.Trackable;
+import com.solvd.interfaces.functional_interface.EarningsCalculator;
+import com.solvd.interfaces.functional_interface.PlayerFilter;
 import com.solvd.models.game.Competititon;
 import com.solvd.models.game.Game;
 import com.solvd.models.game.Result;
@@ -75,6 +79,22 @@ public class App {
         } catch (IncompleteTeamException e) {
             logger.error(e.getMessage());
         }
+        // ------- LAMBDA -------
+        logger.info("----------LAMBDA TESTS----------");
+        List<FootballPlayer> players = team1.getTeamMembers();
+        PlayerFilter skilledMoreThan60 = p -> p.getPlayerSkill() > 60;
+        List<FootballPlayer> filtered = players.stream().filter(skilledMoreThan60::test).collect(Collectors.toList());
+        filtered.forEach(p -> logger.info(p.getPlayerName() + " is skilled more than 60"));
+
+        EarningsCalculator bonusForRichManager = (score, manager) -> {
+            if (manager.getFunds() > 10000)
+                return score * 1.1;
+            else
+                return score * 1.5;
+        };
+
+        manager1.earnMoney(1000, bonusForRichManager);
+        manager2.earnMoney(1000, bonusForRichManager);
 
         trainer.coachTeam(team1);
         trainer.trainPlayer(team1.getTeamMembers().get(0));
@@ -104,11 +124,12 @@ public class App {
 
         competition.playAllMatches();
         RewardTracker rewardTracker = new RewardTracker();
-        for (FootballPlayer player : team1.getTeamMembers()) {
-            if (player instanceof Goalkeeper) {
-                rewardTracker.giveReward(player, "Best Vegetable of the Match");
-            }
-        }
+        // for (FootballPlayer player : team1.getTeamMembers()) {
+        //     if (player instanceof Goalkeeper) {
+        //         rewardTracker.giveReward(player, "Best Vegetable of the Match");
+        //     }
+        // }
+        team1.getTeamMembers().stream().filter(player -> player instanceof Goalkeeper).forEach(player -> rewardTracker.giveReward(player, "Best Vegetable of the Match"));
         rewardTracker.displayRewards();
 
         logger.info("------------Statistics------------");
@@ -116,19 +137,26 @@ public class App {
         ArrayList<Trackable> trackableEntities = new ArrayList<>();
         trackableEntities.add(team1);
         trackableEntities.add(team2);
-        for (FootballPlayer player : team1.getTeamMembers()) {
-            trackableEntities.add(player);
-        }
-        for (FootballPlayer player : team2.getTeamMembers()) {
-            trackableEntities.add(player);
-        }
+        // for (FootballPlayer player : team1.getTeamMembers()) {
+        //     trackableEntities.add(player);
+        // }
+        team1.getTeamMembers().stream().forEach(trackableEntities::add);
+        // for (FootballPlayer player : team2.getTeamMembers()) {
+        //     trackableEntities.add(player);
+        // }
+        team2.getTeamMembers().stream().forEach(trackableEntities::add);
         trackableEntities.add(manager1);
         trackableEntities.add(manager2);
 
-        for (Trackable entity : trackableEntities) {
-            entity.displayStats();
-            logger.info("------------");
-        }
+        // for (Trackable entity : trackableEntities) {
+        // entity.displayStats();
+        // logger.info("------------");
+        // }
+        trackableEntities.stream()
+                .forEach(entity -> {
+                    entity.displayStats();
+                    logger.info("------------");
+                });
 
         logger.info("------------Rating------------");
         SkillsRating rating = new SkillsRating();

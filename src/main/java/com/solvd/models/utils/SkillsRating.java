@@ -20,9 +20,12 @@ public class SkillsRating {
     }
 
     public TreeMap<FootballTeam, Integer> showRating() {
-        for (Map.Entry<FootballTeam, Integer> team : rating.entrySet()) {
-            logger.info(team.getKey().getFootballTeamName() + " - " + team.getValue());
-        }
+        // for (Map.Entry<FootballTeam, Integer> team : rating.entrySet()) {
+        // logger.info(team.getKey().getFootballTeamName() + " - " + team.getValue());
+        // }
+        rating.entrySet().stream()
+                .forEach(entry -> logger.info(entry.getKey().getFootballTeamName() + " - " + entry.getValue()));
+
         return rating;
     }
 }

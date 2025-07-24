@@ -12,12 +12,10 @@ public class PlayersMarket extends AbstractMarket<FootballPlayer> {
 
     @Override
     public FootballPlayer getItem(String name) {
-        for (FootballPlayer player : items) {
-            if (player.getPlayerName().equals(name)) {
-                return player;
-            }
-        }
-        return null;
+        return items.stream().filter(player -> player.getPlayerName().equals(name)).findFirst().orElse(null);
+        // if (player.getPlayerName().equals(name)) {
+        // return player;
+        // }
     }
 
     public FootballPlayer getPlayer(String name) {
@@ -26,19 +24,32 @@ public class PlayersMarket extends AbstractMarket<FootballPlayer> {
 
     @Override
     public void addItem(FootballPlayer player) throws DuplicatePlayerRoleException {
-        for (FootballPlayer existingPlayer : items) {
-            if (existingPlayer.getPlayerName().equals(player.getPlayerName())
-                    && !existingPlayer.getClass().equals(player.getClass())) {
-                throw new DuplicatePlayerRoleException(
-                        "Player " + player.getPlayerName() + " already exists with a different role: "
-                                + existingPlayer.getClass().getSimpleName() + ". New role: "
-                                + player.getClass().getSimpleName());
-            }
+        // for (FootballPlayer existingPlayer : items) {
+        // if (existingPlayer.getPlayerName().equals(player.getPlayerName())
+        // && !existingPlayer.getClass().equals(player.getClass())) {
+        // throw new DuplicatePlayerRoleException(
+        // "Player " + player.getPlayerName() + " already exists with a different role:
+        // "
+        // + existingPlayer.getClass().getSimpleName() + ". New role: "
+        // + player.getClass().getSimpleName());
+        // }
+        // }
+        FootballPlayer existingPlayer = items.stream()
+                .filter(p -> p.getPlayerName().equals(player.getPlayerName())
+                        && !p.getClass().equals(player.getClass()))
+                .findFirst()
+                .orElse(null);
+
+        if (existingPlayer != null) {
+            throw new DuplicatePlayerRoleException(
+                    "Player " + player.getPlayerName() + " already exists with a different role: "
+                            + existingPlayer.getClass().getSimpleName() + ". New role: "
+                            + player.getClass().getSimpleName());
         }
         if (items.add(player)) {
-           logger.info(player + " is added to the Market"); 
+            logger.info(player + " is added to the Market");
         } else {
-            logger.info(player + " has been already added to the Market"); 
+            logger.info(player + " has been already added to the Market");
         }
     }
 }

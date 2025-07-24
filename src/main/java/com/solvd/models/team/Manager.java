@@ -3,6 +3,7 @@ package com.solvd.models.team;
 import com.solvd.exceptions.InsufficientFundsException;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
+import com.solvd.interfaces.functional_interface.EarningsCalculator;
 import com.solvd.models.utils.Person;
 
 import org.slf4j.Logger;
@@ -36,12 +37,18 @@ public class Manager extends Person implements Trackable {
         logger.info("Manager " + name + " trained a player" + player);
     }
 
-    public void earnMoney(double score) {
-        money += score;
+    public void earnMoney(double score, EarningsCalculator calculator) {
+        double calculated = calculator.calculate(score, this);
+        this.money += calculated;
+        logger.info("Manager " + name + " earned $" + calculated + " (base score: " + score + ")");
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public double getFunds() {
+        return money;
     }
 
     @Override

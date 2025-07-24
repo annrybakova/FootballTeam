@@ -7,6 +7,7 @@ import com.solvd.App;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.exceptions.InvalidGameException;
 import com.solvd.exceptions.SameReferees;
+import com.solvd.interfaces.functional_interface.Randomise;
 import com.solvd.models.enums.MatchResultType;
 import com.solvd.models.referees.FieldJudge;
 import com.solvd.models.referees.LineJudge;
@@ -38,7 +39,8 @@ public class Game extends AbstractGame {
         } catch (IncompleteTeamException e) {
             throw new InvalidGameException("Game can't be played: " + e.getMessage());
         }
-        int result = Random.randomInt(0, 2);
+        Randomise MathRandom = (min, max) -> (int)(Math.random() * (max - min + 1)) + min;
+        int result = Random.randomInt(0, 2, MathRandom);
         logger.info("Result of the game: ");
         switch (result) {
             case 1:

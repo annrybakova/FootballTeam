@@ -9,6 +9,7 @@ import com.solvd.App;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
+import com.solvd.interfaces.functional_interface.EarningsCalculator;
 
 public class FootballTeam<T extends FootballPlayer> implements Trainable, Trackable, Comparable<FootballTeam> {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
@@ -26,12 +27,13 @@ public class FootballTeam<T extends FootballPlayer> implements Trainable, Tracka
         team.add(player);
     }
 
-    public int getTeamSkill() {
-        int teamSkill = 0;
-        for (T player : team) {
-            teamSkill += player.getPlayerSkill();
-        }
-        return teamSkill + teamSkillBonus;
+    public double getTeamSkill() {
+        // int teamSkill = 0;
+        return team.stream().mapToDouble(player -> player.getPlayerSkill()).sum() + teamSkillBonus;
+        // for (T player : team) {
+        // teamSkill += player.getPlayerSkill();
+        // }
+        // return teamSkill + teamSkillBonus;
     }
 
     @Override
@@ -42,14 +44,16 @@ public class FootballTeam<T extends FootballPlayer> implements Trainable, Tracka
 
     public void updatePlayersSkill(int score) {
         logger.info("Skills of all members of team " + name + " are increased by " + team.size() / score);
-        for (T member : team) {
-            member.updatePlayerSkill(team.size() / score);
-        }
+        // for (T member : team) {
+        // member.updatePlayerSkill(team.size() / score);
+        // }
+        team.forEach(member -> member.updatePlayerSkill(team.size() / score));
     }
 
     public void updateManagerMoney(int score) {
-        logger.info("Manager of team " + name + " earned $" + team.size() / score);
-        manager.earnMoney(team.size() / score);
+        double baseScore = (double) team.size() / score;
+        EarningsCalculator calculator = (s, m) -> s * 1.2;
+        manager.earnMoney(baseScore, calculator);
     }
 
     public String getFootballTeamName() {
@@ -69,18 +73,22 @@ public class FootballTeam<T extends FootballPlayer> implements Trainable, Tracka
     }
 
     public void validateTeam() {
-        boolean hasGoalkeeper = false;
-        boolean hasDefender = false;
-        boolean hasForward = false;
-        for (T player : team) {
-            if (player instanceof Goalkeeper) {
-                hasGoalkeeper = true;
-            } else if (player instanceof Defender) {
-                hasDefender = true;
-            } else if (player instanceof Forward) {
-                hasForward = true;
-            }
-        }
+        // boolean hasGoalkeeper = false;
+        // boolean hasDefender = false;
+        // boolean hasForward = false;
+        // for (T player : team) {
+        // if (player instanceof Goalkeeper) {
+        // hasGoalkeeper = true;
+        // } else if (player instanceof Defender) {
+        // hasDefender = true;
+        // } else if (player instanceof Forward) {
+        // hasForward = true;
+        // }
+        // }
+        boolean hasGoalkeeper = team.stream().anyMatch(player -> player instanceof Goalkeeper);
+        boolean hasDefender = team.stream().anyMatch(player -> player instanceof Defender);
+        boolean hasForward = team.stream().anyMatch(player -> player instanceof Forward);
+
         if (!hasGoalkeeper || !hasDefender || !hasForward) {
             throw new IncompleteTeamException(
                     "Team " + name + " must include at least 1 Goalkeeper, 1 Defender, and 1 Forward.");
@@ -93,9 +101,12 @@ public class FootballTeam<T extends FootballPlayer> implements Trainable, Tracka
         logger.info("Manager: " + manager.getName());
         logger.info("Total Skill Level: " + getTeamSkill());
         logger.info("Players:");
-        for (T player : team) {
-            logger.info("  " + player.getPlayerName() + " (Skill: " + player.getPlayerSkill() + ")");
-        }
+        team.forEach(
+                player -> logger.info("  " + player.getPlayerName() + " (Skill: " + player.getPlayerSkill() + ")"));
+        // for (T player : team) {
+        // logger.info(" " + player.getPlayerName() + " (Skill: " +
+        // player.getPlayerSkill() + ")");
+        // }
     }
 
     @Override

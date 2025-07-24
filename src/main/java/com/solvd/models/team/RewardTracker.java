@@ -33,12 +33,19 @@ public class RewardTracker {
         if (rewardsTracker.isEmpty()) {
             logger.info("  No rewards yet.");
         } else {
-            for (Map.Entry<FootballPlayer, List<String>> entry : rewardsTracker.entrySet()) {
-                logger.info("  Given to: " + entry.getKey().getPlayerName());
-                for (String reward : entry.getValue()) {
-                    logger.info("    - " + reward);
-                }
-            }
+            // for (Map.Entry<FootballPlayer, List<String>> entry :
+            // rewardsTracker.entrySet()) {
+            // logger.info(" Given to: " + entry.getKey().getPlayerName());
+            // for (String reward : entry.getValue()) {
+            // logger.info(" - " + reward);
+            // }
+            // }
+            rewardsTracker.entrySet().stream()
+                    .forEach(entry -> {
+                        logger.info("  Given to: " + entry.getKey().getPlayerName());
+                        entry.getValue().stream()
+                                .forEach(reward -> logger.info("    - " + reward));
+                    });
         }
     }
 

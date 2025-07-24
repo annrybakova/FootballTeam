@@ -40,9 +40,10 @@ public class Goalkeeper extends FootballPlayer implements Rewardable {
         if (rewards.isEmpty()) {
             logger.info("  No rewards yet.");
         } else {
-            for (String reward : rewards) {
-                logger.info("  - " + reward);
-            }
+            // for (String reward : rewards) {
+            //     logger.info("  - " + reward);
+            // }
+            rewards.forEach(reward -> logger.info("  - " + reward));
         }
     }
 

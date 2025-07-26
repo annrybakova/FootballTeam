@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AnnotationReader {
-        private static final Logger logger = LoggerFactory.getLogger(AnnotationReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(AnnotationReader.class);
 
     private Class<?> clazz;
 

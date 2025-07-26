@@ -3,12 +3,11 @@ package com.solvd.models.market;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
 import com.solvd.exceptions.DuplicatePlayerRoleException;
 import com.solvd.models.team.FootballPlayer;
 
 public class PlayersMarket extends AbstractMarket<FootballPlayer> {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlayersMarket.class);
 
     @Override
     public FootballPlayer getItem(String name) {
@@ -47,9 +46,9 @@ public class PlayersMarket extends AbstractMarket<FootballPlayer> {
                             + player.getClass().getSimpleName());
         }
         if (items.add(player)) {
-            logger.info(player + " is added to the Market");
+            logger.info(player.getPlayerName() + " is added to the Market");
         } else {
-            logger.info(player + " has been already added to the Market");
+            logger.info(player.getPlayerName() + " has been already added to the Market");
         }
     }
 }

@@ -3,7 +3,7 @@ package com.solvd.models.team;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
+import com.solvd.annotations.Info;
 import com.solvd.interfaces.Marketable;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
@@ -12,7 +12,7 @@ import com.solvd.models.enums.RefereePosition;
 import com.solvd.models.utils.Person;
 
 public abstract class FootballPlayer extends Person implements Trainable, Marketable, Trackable {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(FootballPlayer.class);
     protected double skill;
     protected int price;
     private PlayerPosition position;
@@ -25,6 +25,7 @@ public abstract class FootballPlayer extends Person implements Trainable, Market
 
     public abstract void beEnrolled(FootballTeam team);
 
+    @Info(author = "Anna Rybakova", date = "7/25")
     public double getPlayerSkill() {
         // logger.info("Football Player " + name + " has skill of " + skill);
         return skill;

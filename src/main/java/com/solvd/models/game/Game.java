@@ -3,7 +3,6 @@ package com.solvd.models.game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.exceptions.InvalidGameException;
 import com.solvd.exceptions.SameReferees;
@@ -15,7 +14,7 @@ import com.solvd.models.team.FootballTeam;
 import com.solvd.models.utils.Random;
 
 public class Game extends AbstractGame {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(Game.class);
     private FieldJudge fieldJudge;
     private LineJudge lineJudge;
 

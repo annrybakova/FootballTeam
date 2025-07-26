@@ -6,11 +6,10 @@ import java.util.Queue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
 import com.solvd.exceptions.InvalidGameException;
 
 public class Competititon <T extends Game> {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(Competititon.class);
     private final Queue<T> matches = new LinkedList<T>();
 
     public void addMatch(T match) {

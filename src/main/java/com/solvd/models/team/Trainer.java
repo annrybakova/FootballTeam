@@ -1,13 +1,12 @@
 package com.solvd.models.team;
 
-import com.solvd.App;
 import com.solvd.interfaces.Coachable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Trainer implements Coachable {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(Trainer.class);
     private String name;
     private int experienceLevel;
 

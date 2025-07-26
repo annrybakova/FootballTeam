@@ -6,16 +6,15 @@ import java.util.TreeMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
 import com.solvd.models.team.FootballTeam;
 
 public class SkillsRating {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(SkillsRating.class);
 
     public TreeMap<FootballTeam, Integer> rating = new TreeMap<>();
 
     public void addTeamToRating(FootballTeam team) {
-        int skill = team.getTeamSkill();
+        int skill = (int) team.getTeamSkill();
         rating.put(team, skill);
     }
 

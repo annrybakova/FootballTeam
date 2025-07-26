@@ -3,12 +3,11 @@ package com.solvd.models.referees;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
 import com.solvd.models.enums.RefereePosition;
 import com.solvd.models.game.Game;
 
 public class LineJudge extends Referee {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(LineJudge.class);
 
     public LineJudge(int experience, String name) {
         super(name, experience);

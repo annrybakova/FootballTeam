@@ -27,6 +27,7 @@ import com.solvd.models.team.Goalkeeper;
 import com.solvd.models.team.Manager;
 import com.solvd.models.team.RewardTracker;
 import com.solvd.models.team.Trainer;
+import com.solvd.models.utils.AnnotationReader;
 import com.solvd.models.utils.SkillsRating;
 import com.solvd.models.utils.Statistics;
 
@@ -42,6 +43,12 @@ public class App {
         Manager manager2 = new Manager("Sr. Pumpkin", 10000);
 
         Trainer trainer = new Trainer("Coach Potato", 15);
+        AnnotationReader reader = new AnnotationReader(FootballTeam.class);
+
+        logger.info("Author: " + reader.getClassAuthor());
+        logger.info("Version: " + reader.getClassDate());
+
+        reader.printMethodAnnotations();
 
         FootballTeam<FootballPlayer> team1 = new FootballTeam("Vegetables", manager1);
         FootballTeam<FootballPlayer> team2 = new FootballTeam("Fruit", manager2);
@@ -125,11 +132,12 @@ public class App {
         competition.playAllMatches();
         RewardTracker rewardTracker = new RewardTracker();
         // for (FootballPlayer player : team1.getTeamMembers()) {
-        //     if (player instanceof Goalkeeper) {
-        //         rewardTracker.giveReward(player, "Best Vegetable of the Match");
-        //     }
+        // if (player instanceof Goalkeeper) {
+        // rewardTracker.giveReward(player, "Best Vegetable of the Match");
         // }
-        team1.getTeamMembers().stream().filter(player -> player instanceof Goalkeeper).forEach(player -> rewardTracker.giveReward(player, "Best Vegetable of the Match"));
+        // }
+        team1.getTeamMembers().stream().filter(player -> player instanceof Goalkeeper)
+                .forEach(player -> rewardTracker.giveReward(player, "Best Vegetable of the Match"));
         rewardTracker.displayRewards();
 
         logger.info("------------Statistics------------");
@@ -138,11 +146,11 @@ public class App {
         trackableEntities.add(team1);
         trackableEntities.add(team2);
         // for (FootballPlayer player : team1.getTeamMembers()) {
-        //     trackableEntities.add(player);
+        // trackableEntities.add(player);
         // }
         team1.getTeamMembers().stream().forEach(trackableEntities::add);
         // for (FootballPlayer player : team2.getTeamMembers()) {
-        //     trackableEntities.add(player);
+        // trackableEntities.add(player);
         // }
         team2.getTeamMembers().stream().forEach(trackableEntities::add);
         trackableEntities.add(manager1);

@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
+import com.solvd.annotations.Info;
 import com.solvd.exceptions.IncompleteTeamException;
 import com.solvd.interfaces.Trackable;
 import com.solvd.interfaces.Trainable;
 import com.solvd.interfaces.functional_interface.EarningsCalculator;
 
+@Info(author = "Anna Rybakova")
 public class FootballTeam<T extends FootballPlayer> implements Trainable, Trackable, Comparable<FootballTeam> {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(FootballTeam.class);
     private String name;
     private Manager manager;
     private ArrayList<T> team = new ArrayList<T>();

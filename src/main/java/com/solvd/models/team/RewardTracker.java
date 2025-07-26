@@ -8,11 +8,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
 import com.solvd.interfaces.Rewardable;
 
 public class RewardTracker {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(RewardTracker.class);
     private Map<FootballPlayer, List<String>> rewardsTracker = new HashMap<>();
 
     public void giveReward(FootballPlayer player, String reward) {

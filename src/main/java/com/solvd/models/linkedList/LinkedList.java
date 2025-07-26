@@ -3,10 +3,8 @@ package com.solvd.models.linkedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.solvd.App;
-
 public class LinkedList {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(LinkedList.class);
 
     public static class Node<T> {
         T data;

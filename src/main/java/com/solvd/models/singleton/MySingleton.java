@@ -27,12 +27,16 @@ public class MySingleton {
         public void logMessage(String message) {
             logger.info(Thread.currentThread().getName() + ": " + message);
         }
+
+        public String getId() {
+            return this.toString();
+        }
     }
 
     public static void main(String[] args) {
         Runnable task = () -> {
             Singleton singleton = Singleton.getInstance();
-            singleton.logMessage("Bella Chao!");
+            singleton.logMessage("Bella Ciao! My ID: " + singleton.getId());
         };
 
         Thread thread1 = new Thread(task, "Tomato");

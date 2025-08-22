@@ -1,12 +1,12 @@
 package com.solvd.airport.services.impl;
 
-import com.solvd.airport.dao.interfaces.AirportDAO;
+import com.solvd.airport.dao.interfaces.IAirportDAO;
 import com.solvd.airport.models.Airport;
 
 public class AirportService {
-    private AirportDAO airportDAO;
+    private IAirportDAO airportDAO;
 
-    public AirportService(AirportDAO airportDAO) {
+    public AirportService(IAirportDAO airportDAO) {
         this.airportDAO = airportDAO;
     }
 

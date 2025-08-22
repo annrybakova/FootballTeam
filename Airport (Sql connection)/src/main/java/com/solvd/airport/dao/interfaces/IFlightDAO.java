@@ -3,7 +3,7 @@ package com.solvd.airport.dao.interfaces;
 import com.solvd.airport.models.Flight;
 import java.util.List;
 
-public interface FlightDAO {
+public interface IFlightDAO {
     void add(Flight flight);
     Flight getById(int id);
     List<Flight> getAll();

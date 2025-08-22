@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface PassengerDAO {
+public interface IPassengerDAO {
     void add(Passenger passenger);
     Passenger getById(int id);
     List<Passenger> getAll();

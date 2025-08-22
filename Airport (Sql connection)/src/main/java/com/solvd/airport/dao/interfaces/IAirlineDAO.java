@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.solvd.airport.models.Airline;
 
-public interface AirlineDAO {
+public interface IAirlineDAO {
     void add(Airline airline);
     Airline getById(int id);
     List<Airline> getAll();

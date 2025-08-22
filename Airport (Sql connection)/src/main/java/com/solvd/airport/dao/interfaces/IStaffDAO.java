@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.solvd.airport.models.Staff;
 
-public interface StaffDAO {
+public interface IStaffDAO {
     void add(Staff staff);
     Staff getById(int id);
     List<Staff> getAll();

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.dao.interfaces.TicketDAO;
+import com.solvd.airport.dao.interfaces.ITicketDAO;
 import com.solvd.airport.models.Ticket;
 
-public class ITicketDAO implements TicketDAO {
+public class TicketDAO implements ITicketDAO {
     private static final String T = "tickets";
     private static final String ID = "ticket_id";
     private static final String PASSENGER_ID = "passenger_id";

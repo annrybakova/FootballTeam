@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.solvd.airport.models.Ticket;
 
-public interface TicketDAO {
+public interface ITicketDAO {
     void add(Ticket ticket);
     Ticket getById(int id);
     List<Ticket> getAll();

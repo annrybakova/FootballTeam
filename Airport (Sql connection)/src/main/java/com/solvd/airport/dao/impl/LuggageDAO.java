@@ -9,10 +9,10 @@ import java.util.List;
 
 import java.sql.Statement;
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.dao.interfaces.LuggageDAO;
+import com.solvd.airport.dao.interfaces.ILuggageDAO;
 import com.solvd.airport.models.Luggage;
 
-public class ILuggageDAO implements LuggageDAO {
+public class LuggageDAO implements ILuggageDAO {
     private static final String T = "luggage";
     private static final String ID = "luggage_id";
     private static final String PASSENGER_ID = "passenger_id";

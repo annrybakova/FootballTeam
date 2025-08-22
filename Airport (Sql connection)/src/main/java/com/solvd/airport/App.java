@@ -5,22 +5,22 @@ import java.time.LocalDateTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.dao.impl.IAirlineDAO;
-import com.solvd.airport.dao.impl.IAirportDAO;
-import com.solvd.airport.dao.impl.IFlightDAO;
-import com.solvd.airport.dao.impl.ILuggageDAO;
-import com.solvd.airport.dao.impl.IPassengerDAO;
-import com.solvd.airport.dao.impl.IRoleDAO;
-import com.solvd.airport.dao.impl.IStaffDAO;
-import com.solvd.airport.dao.impl.ITicketDAO;
-import com.solvd.airport.dao.interfaces.AirlineDAO;
-import com.solvd.airport.dao.interfaces.AirportDAO;
-import com.solvd.airport.dao.interfaces.FlightDAO;
-import com.solvd.airport.dao.interfaces.LuggageDAO;
-import com.solvd.airport.dao.interfaces.PassengerDAO;
-import com.solvd.airport.dao.interfaces.RoleDAO;
-import com.solvd.airport.dao.interfaces.StaffDAO;
-import com.solvd.airport.dao.interfaces.TicketDAO;
+import com.solvd.airport.dao.impl.AirlineDAO;
+import com.solvd.airport.dao.impl.AirportDAO;
+import com.solvd.airport.dao.impl.FlightDAO;
+import com.solvd.airport.dao.impl.LuggageDAO;
+import com.solvd.airport.dao.impl.PassengerDAO;
+import com.solvd.airport.dao.impl.RoleDAO;
+import com.solvd.airport.dao.impl.StaffDAO;
+import com.solvd.airport.dao.impl.TicketDAO;
+import com.solvd.airport.dao.interfaces.IAirlineDAO;
+import com.solvd.airport.dao.interfaces.IAirportDAO;
+import com.solvd.airport.dao.interfaces.IFlightDAO;
+import com.solvd.airport.dao.interfaces.ILuggageDAO;
+import com.solvd.airport.dao.interfaces.IPassengerDAO;
+import com.solvd.airport.dao.interfaces.IRoleDAO;
+import com.solvd.airport.dao.interfaces.IStaffDAO;
+import com.solvd.airport.dao.interfaces.ITicketDAO;
 import com.solvd.airport.models.Airline;
 import com.solvd.airport.models.Airport;
 import com.solvd.airport.models.Flight;
@@ -40,14 +40,14 @@ public class App {
 
     public static void main(String[] args) {
 
-        AirlineDAO airlineDAO = new IAirlineDAO();
-        AirportDAO airportDAO = new IAirportDAO();
-        FlightDAO flightDAO = new IFlightDAO();
-        LuggageDAO luggageDAO = new ILuggageDAO();
-        PassengerDAO passengerDAO = new IPassengerDAO();
-        RoleDAO roleDAO = new IRoleDAO();
-        StaffDAO staffDAO = new IStaffDAO();
-        TicketDAO ticketDAO = new ITicketDAO();
+        AirlineDAO airlineDAO = new AirlineDAO();
+        AirportDAO airportDAO = new AirportDAO();
+        FlightDAO flightDAO = new FlightDAO();
+        LuggageDAO luggageDAO = new LuggageDAO();
+        PassengerDAO passengerDAO = new PassengerDAO();
+        RoleDAO roleDAO = new RoleDAO();
+        StaffDAO staffDAO = new StaffDAO();
+        TicketDAO ticketDAO = new TicketDAO();
 
         AirportService airportService = new AirportService(airportDAO);
         FlightService flightService = new FlightService(flightDAO, airlineDAO);

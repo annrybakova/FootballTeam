@@ -11,10 +11,10 @@ import java.util.List;
 
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.dao.interfaces.FlightDAO;
+import com.solvd.airport.dao.interfaces.IFlightDAO;
 import com.solvd.airport.models.Flight;
 
-public class IFlightDAO implements FlightDAO {
+public class FlightDAO implements IFlightDAO {
     private static final String T = "flights";
     private static final String ID = "flight_id";
     private static final String AIRLINE_ID = "airline_id";

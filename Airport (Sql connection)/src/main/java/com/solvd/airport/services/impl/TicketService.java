@@ -1,12 +1,12 @@
 package com.solvd.airport.services.impl;
 
-import com.solvd.airport.dao.interfaces.TicketDAO;
+import com.solvd.airport.dao.interfaces.ITicketDAO;
 import com.solvd.airport.models.Ticket;
 
 public class TicketService {
-    private TicketDAO ticketDAO;
+    private ITicketDAO ticketDAO;
 
-    public TicketService(TicketDAO ticketDAO) {
+    public TicketService(ITicketDAO ticketDAO) {
         this.ticketDAO = ticketDAO;
     }
 

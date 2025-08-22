@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.solvd.airport.models.Luggage;
 
-public interface LuggageDAO {
+public interface ILuggageDAO {
     void add(Luggage luggage);
     Luggage getById(int id);
     List<Luggage> getAll();
